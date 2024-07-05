@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Dokdo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dokdo&family=Sunflower:wght@300&display=swap');
+body{
+  margin: 0;
+  padding: 0;
+}
+
+.Main_Container{
+  background-color: #EEEDEB;
+}
+.Content_Wrapper{
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1280px;
+  width: 100%;
+  height: 100vh;
+}
+.Content{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  font-family: "Dokdo", system-ui;
+}
+.Content h2{
+  font-size: 48px;
+  position: relative;
+}
+.Content h2:after{
+  content: "";
+  width: 100%;
+  border: 1px solid black;
+  background-color: black;
+  position: absolute;
+  left: 0;
+  right: 0; 
+  bottom: -5px;
+}
+.TodoApp{
+  max-width: 800px;
+  width: 100%;
+  height: 700px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.Event_Area{
+  flex: 1;
+  margin: 30px 80px;
+  border-radius: 7px;
+  display: flex;
+  flex-direction: column;
+  font-size: 24px;
+}
+.Event_Area div{
+  width: 100%;
+  display: flex;
+  
+}
+
+.Event_Area div p{
+  margin-left: 30px;
+  margin-top: 10px;
+  height: 100%;
+}
+.deleteBtn, .checkBtn, .editBtn{
+  all: unset;
+  cursor: pointer;
+  height: 100%;
+  margin-right: 3px;
+}
+.checkBtn,.editBtn{
+  margin-right: 10px
+}
+.Input_Area{
+  margin-bottom: 30px;
+}
+.Input_Area input{
+  width: 70%;
+  height: 100%;
+  border-radius: 5px;
+}
+.Input_Area input::placeholder{
+  font-size: 18px;
+  font-family: "Sunflower", sans-serif;
+}
+.Input_Area button{
+  all: unset;
+  cursor: pointer;
+  border: 1px solid black;
+  color: white;
+  font-weight: 600;
+  background-color: black;
+  font-size: 13px;
+  border-radius: 5px;
+  margin-left: 10px;
+  width: 50px;
+  height: 100%;
+  font-family: "Sunflower", sans-serif;
+}
+
+.todolist_content{
+  display: flex;
+  align-items: center;
+}
+.todolist {
+  align-items: center;
+}
+.todolist form{
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.todolist form input{
+  width: 100%;
+  margin-right: 4px;
+  margin-left: 4px;
+}
+.todolist form button{
+  margin-right: 4px;
+}
+.todolist_checked{
+  background-color: aquamarine;
+  align-items: center;
+}
+.todolist_checked:last-child{
+  border-radius: 0 0 7px 7px;
+}
+.todolist_checked:nth-child(1){
+  border-radius: 7px 7px 0 0;
+}
+.Date_Area{
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+.Date_Area p{
+  font-size: 24px;
+  font-weight: 600;
+  margin-top: 30px;
+  margin-bottom: 0;
+}
