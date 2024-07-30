@@ -4,9 +4,36 @@ body{
   margin: 0;
   padding: 0;
 }
-
+.Header{
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+  margin-right: 60px;
+}
+.blank{
+  flex: 1;
+}
 .Main_Container{
   background-color: #EEEDEB;
+}
+.Main_Contents div{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: "Dokdo", system-ui;
+  font-size: 30px;
+  height: 100px;
+  margin: 20px;
+  border: 2px solid black;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.Main_Contents{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
 }
 .Content_Wrapper{
   margin-left: auto;
