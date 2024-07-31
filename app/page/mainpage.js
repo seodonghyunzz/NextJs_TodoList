@@ -13,8 +13,8 @@ export default function Mainpage() {
     }
     return (
         <div className="Main_Contents">  
-            <div onClick={handleTodayClick}>Today's Plan</div>
             <div onClick={handleCalendarClick}>Calendar</div>
+            <div onClick={handleTodayClick}>Today's Plan</div>
             <div onClick={handlePriorityClick}>Priority</div>
         </div>
     );
