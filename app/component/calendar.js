@@ -1,9 +1,10 @@
 'use client'
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 const Calendarpage = () => {
     const [currentDate, setCurrentDate] = useState(new Date());
-
+    const router = useRouter();
     const getDaysInMonth = (year, month) => {
         return new Date(year, month+1 , 0).getDate();
     };
@@ -14,7 +15,7 @@ const Calendarpage = () => {
         const daysInMonth = getDaysInMonth(year, month);
 
         const firstDayOfMonth = new Date(year, month, 1).getDay();
-        console.log(daysInMonth);
+        console.log(firstDayOfMonth)
         const calendar = [];
         let week = [];
 
@@ -36,6 +37,7 @@ const Calendarpage = () => {
             }
             calendar.push(week);
         }
+        
         return calendar;
 
     };
@@ -45,8 +47,11 @@ const Calendarpage = () => {
     const handleNextMonth = () => {
         setCurrentDate(new Date(currentDate.getFullYear(),currentDate.getMonth()+1, 1));
     };
+    const alertdate = (day) => {
+        router.push(`/calendar/day=${day}&month=${currentDate.getMonth()+1}&year=${currentDate.getFullYear()}`);
+    }
+    
     const calendar = generateCalendar();
-    console.log(calendar);
     return (
         <div className="Calendar">
             <div className="CalendarHead">
@@ -67,7 +72,7 @@ const Calendarpage = () => {
                 {calendar.map((week, index) => (
                     <div className="Week" key={index}>
                         {week.map((day, index) => (
-                            <div className="Day" key={index}>
+                            <div className="Day" key={index} onClick={() => day !== null && alertdate(day)}>
                                 <p>{day}</p>
                             </div>
                         ))}

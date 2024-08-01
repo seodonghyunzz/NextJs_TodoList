@@ -1,4 +1,3 @@
-
 import Today from "./component/todayDate";
 import AddTodo from "./component/addTodo";
 
@@ -10,8 +9,6 @@ export default function Home() {
           <div className="Content">
             <div className="TodoApp">
               <Mainpage/>
-              {/*<TodoList/>             
-              <AddTodo/>            */}
             </div>
           </div>
       </div>
