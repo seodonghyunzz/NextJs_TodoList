@@ -15,7 +15,6 @@ const Calendarpage = () => {
         const daysInMonth = getDaysInMonth(year, month);
 
         const firstDayOfMonth = new Date(year, month, 1).getDay();
-        console.log(firstDayOfMonth)
         const calendar = [];
         let week = [];
 
@@ -47,8 +46,10 @@ const Calendarpage = () => {
     const handleNextMonth = () => {
         setCurrentDate(new Date(currentDate.getFullYear(),currentDate.getMonth()+1, 1));
     };
-    const alertdate = (day) => {
-        router.push(`/calendar/day=${day}&month=${currentDate.getMonth()+1}&year=${currentDate.getFullYear()}`);
+    const planInDate = (date) => {
+        const month = currentDate.getMonth()+1;
+        const year = currentDate.getFullYear();
+        router.push(`/calendarDetail/${date}/${month}/${year}`);
     }
     
     const calendar = generateCalendar();
@@ -71,9 +72,9 @@ const Calendarpage = () => {
                 </div>
                 {calendar.map((week, index) => (
                     <div className="Week" key={index}>
-                        {week.map((day, index) => (
-                            <div className="Day" key={index} onClick={() => day !== null && alertdate(day)}>
-                                <p>{day}</p>
+                        {week.map((date, index) => (
+                            <div className="Day" key={index} onClick={() => date !== null && planInDate(date)}>
+                                <p>{date}</p>
                             </div>
                         ))}
                     </div>
