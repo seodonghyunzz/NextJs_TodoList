@@ -2,21 +2,33 @@
 import { useState } from "react"
 import useTodoStore from "../store/todoStore";
 
-export default function AddTodo(){
+export default function AddTodo({year,month,date}) {
     const {todos,setTodos} = useTodoStore();
     const [inputValue, setInputValue] = useState('');
-    const saveTodo = () => {
+    
+    const saveTodo = async() => {
       if (inputValue.trim() === '') return;
 
       const newTodo = {
-        id : Date.now(),
         text: inputValue,
+        date: `${year}년 ${month}월 ${date}일`,
         isChecked : false,
         isEditing : false,
+        isPriority : false
       };
 
-      setTodos([...todos,newTodo]);
       setInputValue('');
+      
+      await fetch('http://localhost:3000/api/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          todo: newTodo
+        }),
+        cache: 'no-store'
+      })
     };
     
     return(

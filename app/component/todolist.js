@@ -1,10 +1,18 @@
 'use client'
 import useTodoStore from "../store/todoStore";
 import { useState } from "react";
-export default function TodoList(){
-    const {todos,removeTodo,checkTodo,editTodo,updateTodo} = useTodoStore();
+import Image from "next/image";
+
+
+export default function TodoList({year,month,date,fetchedtodos}) {
+    const {removeTodo,checkTodo,editTodo,updateTodo,priorityTodo} = useTodoStore();
     const [editValue, setEditValue] = useState('');
     const [editingTodoId, setEditingTodoId] = useState(null);
+    
+
+    const filteredTodos = fetchedtodos.filter((todo) => todo.date === `${year}년 ${month}월 ${date}일`);
+
+
     const handleDelete = (id) => {
         removeTodo(id);
     }
@@ -12,7 +20,7 @@ export default function TodoList(){
         checkTodo(id);
     }
     const handleEdit = (id,text) => {
-        setEditingTodoId(id);
+        setEditingTodoId(id)
         setEditValue(text);
         editTodo(id);
     }
@@ -22,14 +30,17 @@ export default function TodoList(){
         setEditValue('');
         setEditingTodoId(null);
     }
-    
+    const handlePriority = (id) => {
+        priorityTodo(id);
+    }
     return(
         <>
         <div className="Event_Area">
-                {todos.map((todo,index)=>(
+                {filteredTodos.map((todo,index)=>(
                 <div key={todo.id} className={`${todo.isChecked?'todolist_checked':'todolist'}`}>
                     <div className="todolist_content">
                         <p className="listindex">{index+1}.</p>
+                        {/* 수정모드 */}
                         {todo.isEditing && editingTodoId === todo.id ?
                         <form>
                         <input
@@ -46,12 +57,17 @@ export default function TodoList(){
                        />
                        <button type="submit" className="editinput_btn" onClick={() => handleUpdate(todo.id)}>enter</button>
                        </form>
-                        :<p className="todotext">{todo.text}</p>
+                    //    할일목록
+                        :<div>
+                            <p className="todotext">{todo.text}</p>
+                        </div>
                         }
+                        
                     </div>
-                    <button className="checkBtn" onClick={() => handleCheck(todo.id)}><img src="check.png" width={30} height={30}/></button>
-                    <button className="editBtn" onClick={() => handleEdit(todo.id, todo.text)}><img src="edit.png" width={30} height={30}/></button>
-                    <button className="deleteBtn" onClick={() => handleDelete(todo.id)}><img src="delete.png" width={30} height={30}/></button>
+                    <button className="checkBtn" onClick={() => handleCheck(todo.id)}><Image src="/check.png" width={30} height={30} alt="check"/></button>
+                    <button className="editBtn" onClick={() => handleEdit(todo.id, todo.text)}><Image src="/edit.png" width={30} height={30} alt="edit"/></button>
+                    <button className="deleteBtn" onClick={() => handleDelete(todo.id)}><Image src="/delete.png" width={30} height={30} alt="delete"/></button>
+                    <button className="priorityBtn" onClick={() => handlePriority(todo.id)}>{todo.isPriority ? <Image src="/fullstar.png" width={30} height={30} alt="fullstar"/>:<Image src="/emptystar.png" width={30} height={30} alt="emptystar"/>}</button>
                 </div>
                 ))}
             

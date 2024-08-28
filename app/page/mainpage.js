@@ -2,6 +2,7 @@
 import { useRouter } from "next/navigation";
 export default function Mainpage() {
     const router = useRouter();
+
     const handleTodayClick = () => {
         router.push("/today");
     }

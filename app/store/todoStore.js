@@ -1,8 +1,7 @@
 import { create } from "zustand";
 
 const useTodoStore = create((set) => ({
-    todos : [],
-    setTodos: (todo)=>set({todos:todo}),
+
     removeTodo: (id) => 
         set((state) => ({
             todos: state.todos.filter((todo) => todo.id !== id),
@@ -25,6 +24,12 @@ const useTodoStore = create((set) => ({
             todo.id === id ? { ...todo, text: editValue, isEditing: false } : todo
               ),
             })),
+    priorityTodo: (id) =>
+        set((state) => ({
+            todos: state.todos.map((todo) =>
+            todo.id === id ? { ...todo, isPriority: !todo.isPriority } : todo
+            ),
+        })),
 }));
 
 export default useTodoStore;

@@ -1,10 +1,29 @@
-export default function CalendarDetail({params}) {
+import AddTodo from "@/app/component/addTodo";
+import TodoList from "@/app/component/todolist";
+
+export default async function CalendarDetail({params}) {
     const date = params.date;
     const month = params.month;
     const year = params.year;
+    const todos = await fetchedTodosApiCall();
     return (
         <div className="CalendarDetail">
-            <h1>{year}년 {month}월 {date}일</h1>
+            <div className="CalendarDetail_Header">
+              <p>{year}년 {month}월 {date}일</p>  
+            </div>
+            <div className="CalendarDetail_Body">
+              <TodoList year={year} month={month} date={date} fetchedtodos={todos.data}/>
+              <AddTodo year={year} month={month} date={date}/>
+            </div>
         </div>
     );
+}
+
+async function fetchedTodosApiCall() {
+    console.log("api call!!")
+    const res = await fetch("http://localhost:3000/api", {
+        cache: "no-store",
+    });
+    const data = await res.json();
+    return data;
 }
