@@ -3,7 +3,6 @@ import { getTodos , addTodo } from "../firebase/firebase";
 
 export async function GET() {
     const fetchedTodos = await getTodos();
-    console.log(fetchedTodos);
     const response = {
         message: "success",
         data: fetchedTodos

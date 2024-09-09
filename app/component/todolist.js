@@ -2,19 +2,19 @@
 import useTodoStore from "../store/todoStore";
 import { useState } from "react";
 import Image from "next/image";
-
-
+import { deleteTodo, getTodos } from "../firebase/firebase";
+import { useRouter } from "next/navigation";
 export default function TodoList({year,month,date,fetchedtodos}) {
     const {removeTodo,checkTodo,editTodo,updateTodo,priorityTodo} = useTodoStore();
     const [editValue, setEditValue] = useState('');
     const [editingTodoId, setEditingTodoId] = useState(null);
-    
-
+    const router = useRouter()
     const filteredTodos = fetchedtodos.filter((todo) => todo.date === `${year}년 ${month}월 ${date}일`);
 
 
-    const handleDelete = (id) => {
-        removeTodo(id);
+    const handleDelete = async(id) => {
+        deleteTodo(id)
+        setTimeout(()=>{router.refresh()},3)
     }
     const handleCheck = (id) => {
         checkTodo(id);

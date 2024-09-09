@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore , collection, getDocs , setDoc , doc} from "firebase/firestore";
+import { getFirestore , collection, getDocs , setDoc , doc , deleteDoc} from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -22,7 +22,7 @@ export async function getTodos() {
     }
     const fetchedTodos = [];
     query.forEach((doc) => {
-        console.log(doc.id, "=>", doc.data());
+        
         const todo = {
             id: doc.id,
             text: doc.data().text,
@@ -50,4 +50,13 @@ export async function addTodo({ todo }) {
 
     await setDoc(newTodoRef, newTodo);
     return newTodo;
+}
+
+export async function deleteTodo(id) {
+    if(id === null){
+        return null;
+    }
+    await deleteDoc(doc(db, "todos", id));
+    return null;
+
 }

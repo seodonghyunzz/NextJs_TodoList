@@ -12,11 +12,15 @@ export default function Mainpage() {
     const handlePriorityClick = () => {
         router.push("/priority");
     }
+    const handleSearchClick = () => {
+        router.push("/search");
+    }
     return (
         <div className="Main_Contents">  
             <div onClick={handleCalendarClick}>Calendar</div>
-            <div onClick={handleTodayClick}>Today's Plan</div>
+            <div onClick={handleTodayClick}>Today's</div>
             <div onClick={handlePriorityClick}>Priority</div>
+            <div onClick={handleSearchClick}>Search</div>
         </div>
     );
 }

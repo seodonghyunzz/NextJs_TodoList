@@ -4,8 +4,9 @@ export default function Menu() {
             <ul>
                 <li><a href="/">Home</a></li>
                 <li><a href="/calendar">Calendar</a></li>
-                <li><a href="/today">Today's Plan</a></li>
+                <li><a href="/today">Today's</a></li>
                 <li><a href="/priority">Priority</a></li>
+                <li><a href="/search">Search</a></li>
             </ul>
         </div>
     );

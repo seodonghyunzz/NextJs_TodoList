@@ -1,11 +1,12 @@
 'use client'
 import { useState } from "react"
 import useTodoStore from "../store/todoStore";
+import { useRouter } from "next/navigation";
 
 export default function AddTodo({year,month,date}) {
     const {todos,setTodos} = useTodoStore();
     const [inputValue, setInputValue] = useState('');
-    
+    const router = useRouter()
     const saveTodo = async() => {
       if (inputValue.trim() === '') return;
 
@@ -29,6 +30,7 @@ export default function AddTodo({year,month,date}) {
         }),
         cache: 'no-store'
       })
+      setTimeout(()=>{router.refresh()},1)
     };
     
     return(

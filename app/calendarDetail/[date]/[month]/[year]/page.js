@@ -20,7 +20,6 @@ export default async function CalendarDetail({params}) {
 }
 
 async function fetchedTodosApiCall() {
-    console.log("api call!!")
     const res = await fetch("http://localhost:3000/api", {
         cache: "no-store",
     });
