@@ -1,7 +1,15 @@
-export default function Priority() {
+import PriorityList from "@/app/component/priorityList";
+export default async function Priority() {
+    const fetchedTodos = await fetchedTodosApiCall();
     return (
-        <div className="Priority">
-            <h1>Priority</h1>
-        </div>
+        <PriorityList fetchedTodos={fetchedTodos.data}/>
     );
+}
+
+async function fetchedTodosApiCall() {
+    const res = await fetch("http://localhost:3000/api", {
+        cache: "no-store",
+    });
+    const data = await res.json();
+    return data;
 }

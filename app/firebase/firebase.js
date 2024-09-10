@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore , collection, getDocs , setDoc , doc , deleteDoc} from "firebase/firestore";
+import { getFirestore , collection, getDocs , setDoc , doc , deleteDoc, updateDoc} from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -59,4 +59,33 @@ export async function deleteTodo(id) {
     await deleteDoc(doc(db, "todos", id));
     return null;
 
+}
+
+export async function priorityTodo({ todo }) {
+    const { id, isPriority } = todo;
+    const fetchedTodos = await getTodos(id);
+
+    if(fetchedTodos.length === 0){
+        return null;
+    }
+    const todoRef = doc(db, "todos", id);
+    const updateTodo = await updateDoc(todoRef, {
+        isPriority: !isPriority
+    });
+    return updateTodo;
+ 
+}
+export async function checkTodo({ todo }) {
+    const { id, isChecked } = todo;
+    const fetchedTodos = await getTodos(id);
+
+    if(fetchedTodos.length === 0){
+        return null;
+    }
+    const todoRef = doc(db, "todos", id);
+    const updateTodo = await updateDoc(todoRef, {
+        isChecked: !isChecked
+    });
+    return updateTodo;
+ 
 }

@@ -1,11 +1,10 @@
 'use client'
-import useTodoStore from "../store/todoStore";
+
 import { useState } from "react";
 import Image from "next/image";
-import { deleteTodo, getTodos } from "../firebase/firebase";
+import { deleteTodo, getTodos, priorityTodo,checkTodo } from "../firebase/firebase";
 import { useRouter } from "next/navigation";
 export default function TodoList({year,month,date,fetchedtodos}) {
-    const {removeTodo,checkTodo,editTodo,updateTodo,priorityTodo} = useTodoStore();
     const [editValue, setEditValue] = useState('');
     const [editingTodoId, setEditingTodoId] = useState(null);
     const router = useRouter()
@@ -16,22 +15,13 @@ export default function TodoList({year,month,date,fetchedtodos}) {
         deleteTodo(id)
         setTimeout(()=>{router.refresh()},3)
     }
-    const handleCheck = (id) => {
-        checkTodo(id);
+    const handlePriority = async( { todo } ) => {
+        priorityTodo({todo});
+        setTimeout(()=>{router.refresh()},5)
     }
-    const handleEdit = (id,text) => {
-        setEditingTodoId(id)
-        setEditValue(text);
-        editTodo(id);
-    }
-
-    const handleUpdate = (id) => {
-        updateTodo(id,editValue);
-        setEditValue('');
-        setEditingTodoId(null);
-    }
-    const handlePriority = (id) => {
-        priorityTodo(id);
+    const handleChecked = async( { todo } ) => {
+        checkTodo({todo});
+        setTimeout(()=>{router.refresh()},5)
     }
     return(
         <>
@@ -64,10 +54,10 @@ export default function TodoList({year,month,date,fetchedtodos}) {
                         }
                         
                     </div>
-                    <button className="checkBtn" onClick={() => handleCheck(todo.id)}><Image src="/check.png" width={30} height={30} alt="check"/></button>
-                    <button className="editBtn" onClick={() => handleEdit(todo.id, todo.text)}><Image src="/edit.png" width={30} height={30} alt="edit"/></button>
+                    <button className="checkBtn" onClick={() => handleChecked({todo})}><Image src="/check.png" width={30} height={30} alt="check"/></button>
+                    <button className="editBtn" ><Image src="/edit.png" width={30} height={30} alt="edit"/></button>
                     <button className="deleteBtn" onClick={() => handleDelete(todo.id)}><Image src="/delete.png" width={30} height={30} alt="delete"/></button>
-                    <button className="priorityBtn" onClick={() => handlePriority(todo.id)}>{todo.isPriority ? <Image src="/fullstar.png" width={30} height={30} alt="fullstar"/>:<Image src="/emptystar.png" width={30} height={30} alt="emptystar"/>}</button>
+                    <button className="priorityBtn" onClick={() => handlePriority({todo})}>{todo.isPriority ? <Image src="/fullstar.png" width={30} height={30} alt="fullstar"/>:<Image src="/emptystar.png" width={30} height={30} alt="emptystar"/>}</button>
                 </div>
                 ))}
             

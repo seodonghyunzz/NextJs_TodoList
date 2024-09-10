@@ -4,7 +4,6 @@ import useTodoStore from "../store/todoStore";
 import { useRouter } from "next/navigation";
 
 export default function AddTodo({year,month,date}) {
-    const {todos,setTodos} = useTodoStore();
     const [inputValue, setInputValue] = useState('');
     const router = useRouter()
     const saveTodo = async() => {
