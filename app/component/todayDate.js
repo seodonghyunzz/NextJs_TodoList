@@ -1,5 +1,5 @@
-import Image from "next/image";
-import { deleteTodo } from "../firebase/firebase";
+
+import TodayPlanAdd from "./todayPlanAdd";
 const TodayDate = ({fetchedTodos}) => {
   const date = new Date();
   const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -19,8 +19,8 @@ const TodayDate = ({fetchedTodos}) => {
             <p>{index+1}. {todo.text}</p>
           </div>
         ))}
-        
       </div>
+      <TodayPlanAdd year={date.getFullYear()} month={date.getMonth()+1} date={date.getDate()}/>
     </div>
   );
 };
