@@ -1,4 +1,5 @@
 
+import AddTodo from "./addTodo";
 import TodayPlanAdd from "./todayPlanAdd";
 const TodayDate = ({fetchedTodos}) => {
   const date = new Date();
@@ -20,7 +21,7 @@ const TodayDate = ({fetchedTodos}) => {
           </div>
         ))}
       </div>
-      <TodayPlanAdd year={date.getFullYear()} month={date.getMonth()+1} date={date.getDate()}/>
+      <AddTodo year={date.getFullYear()} month={date.getMonth()+1} date={date.getDate()}/>
     </div>
   );
 };

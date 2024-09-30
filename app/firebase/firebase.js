@@ -61,31 +61,14 @@ export async function deleteTodo(id) {
 
 }
 
-export async function priorityTodo({ todo }) {
-    const { id, isPriority } = todo;
-    const fetchedTodos = await getTodos(id);
-
-    if(fetchedTodos.length === 0){
-        return null;
-    }
+export async function updateTodo({ id, todo }) {
     const todoRef = doc(db, "todos", id);
     const updateTodo = await updateDoc(todoRef, {
-        isPriority: !isPriority
+      text: todo.text,
+      isChecked: todo.isChecked,
+      isEditing: todo.isEditing,
+      isPriority: todo.isPriority,
+      date: todo.date
     });
     return updateTodo;
- 
-}
-export async function checkTodo({ todo }) {
-    const { id, isChecked } = todo;
-    const fetchedTodos = await getTodos(id);
-
-    if(fetchedTodos.length === 0){
-        return null;
-    }
-    const todoRef = doc(db, "todos", id);
-    const updateTodo = await updateDoc(todoRef, {
-        isChecked: !isChecked
-    });
-    return updateTodo;
- 
-}
+  }

@@ -1,28 +1,51 @@
 'use client'
-
-import { useState } from "react";
 import Image from "next/image";
-import { deleteTodo, getTodos, priorityTodo,checkTodo } from "../firebase/firebase";
 import { useRouter } from "next/navigation";
+
 export default function TodoList({year,month,date,fetchedtodos}) {
-    const [editValue, setEditValue] = useState('');
-    const [editingTodoId, setEditingTodoId] = useState(null);
     const router = useRouter()
     const filteredTodos = fetchedtodos.filter((todo) => todo.date === `${year}년 ${month}월 ${date}일`);
-
-
-    const handleDelete = async(id) => {
-        deleteTodo(id)
-        setTimeout(()=>{router.refresh()},3)
-    }
-    const handlePriority = async( { todo } ) => {
-        priorityTodo({todo});
-        setTimeout(()=>{router.refresh()},5)
-    }
-    const handleChecked = async( { todo } ) => {
-        checkTodo({todo});
-        setTimeout(()=>{router.refresh()},5)
-    }
+    
+    const handleDelete = async (id) => {
+        await fetch('http://localhost:3000/api/', {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            id: id,
+          }),
+        });
+        setTimeout(() => { router.refresh() }, 0.1);
+      }
+      
+      const handlePriority = async ({ todo }) => {
+        await fetch('http://localhost:3000/api/', {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            id: todo.id,
+            todo: { ...todo, isPriority: !todo.isPriority }
+        }),
+        });
+        setTimeout(() => { router.refresh() }, 0.1);
+      }
+      
+      const handleChecked = async ({ todo }) => {
+        await fetch('http://localhost:3000/api/', {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ 
+            id: todo.id,
+            todo: { ...todo, isChecked: !todo.isChecked }
+        }),
+        });
+        setTimeout(() => { router.refresh() }, 0.1);
+      }
     return(
         <>
         <div className="Event_Area">
@@ -31,19 +54,19 @@ export default function TodoList({year,month,date,fetchedtodos}) {
                     <div className="todolist_content">
                         <p className="listindex">{index+1}.</p>
                         {/* 수정모드 */}
-                        {todo.isEditing && editingTodoId === todo.id ?
+                        {todo.isEditing === todo.id ?
                         <form>
                         <input
-                        type="text"
-                        className="editinput"
-                        value={editValue}
-                        onChange={(e) => setEditValue(e.target.value)}
-                        placeholder="할 일을 수정하세요."
-                        onKeyDown={event => {
-                         if(event.key=="Enter"){
-                           handleUpdate(todo.id);
-                         }
-                        }}
+                        // type="text"
+                        // className="editinput"
+                        // value={editValue}
+                        // onChange={(e) => setEditValue(e.target.value)}
+                        // placeholder="할 일을 수정하세요."
+                        // onKeyDown={event => {
+                        //  if(event.key=="Enter"){
+                        //    handleUpdate(todo.id);
+                        //  }
+                        // }}
                        />
                        <button type="submit" className="editinput_btn" onClick={() => handleUpdate(todo.id)}>enter</button>
                        </form>

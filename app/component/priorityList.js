@@ -1,5 +1,4 @@
-import Image from "next/image";
-import Priority from "../priority/page";
+
 import PriorityStar from "../component/priorityStar";
 const PriorityList = ({fetchedTodos}) => {
 

@@ -1,3 +1,4 @@
+
 import AddTodo from "@/app/component/addTodo";
 import TodoList from "@/app/component/todolist";
 
@@ -19,10 +20,15 @@ export default async function CalendarDetail({params}) {
     );
 }
 
-async function fetchedTodosApiCall() {
-    const res = await fetch("http://localhost:3000/api", {
+export async function fetchedTodosApiCall() {
+    try {
+      const res = await fetch("http://localhost:3000/api", {
         cache: "no-store",
-    });
-    const data = await res.json();
-    return data;
-}
+      });
+      const data = await res.json();
+      return data;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  }

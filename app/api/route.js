@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getTodos , addTodo } from "../firebase/firebase";
+import { getTodos , addTodo, deleteTodo, updateTodo } from "../firebase/firebase";
 
 export async function GET() {
     const fetchedTodos = await getTodos();
@@ -19,3 +19,22 @@ export async function POST(request) {
     }
     return NextResponse.json(response);
 }
+export async function DELETE(request) {
+    const { id } = await request.json();
+    console.log(id);
+    await deleteTodo(id);
+    const response = {
+      message: "delete success"
+    }
+    return NextResponse.json(response);
+  }
+  
+  export async function PUT(request) {
+    const { id, todo } = await request.json();
+    const updatedTodo = await updateTodo({ id, todo });
+    const response = {
+      message: "update success",
+      data: updatedTodo
+    }
+    return NextResponse.json(response);
+  }
