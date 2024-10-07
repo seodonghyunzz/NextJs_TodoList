@@ -1,6 +1,3 @@
-import Today from "./component/todayDate";
-import AddTodo from "./component/addTodo";
-
 import Mainpage from "./page/mainpage";
 
 export default function Home() {

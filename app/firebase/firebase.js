@@ -72,3 +72,25 @@ export async function updateTodo({ id, todo }) {
     });
     return updateTodo;
   }
+
+export async function SearchTodo(text) {
+    const query = await getDocs(collection(db, "todos"));
+    if (query.empty) {
+        return [];
+    }
+    const fetchedTodos = [];
+    query.forEach((doc) => {
+        if(doc.data().text.includes(text)){
+            const todo = {
+                id: doc.id,
+                text: doc.data().text,
+                isChecked: doc.data().isChecked,
+                isEditing: doc.data().isEditing,
+                isPriority: doc.data().isPriority,
+                date: doc.data().date
+            }
+            fetchedTodos.push(todo);
+        }
+    });
+    return fetchedTodos
+}

@@ -2,9 +2,16 @@
 import { useRouter } from "next/navigation";
 export default function Mainpage() {
     const router = useRouter();
+    const date = new Date();
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    const CurrentDate = date.toLocaleDateString(undefined, options);
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    
 
     const handleTodayClick = () => {
-        router.push("/today");
+        router.push(`/calendarDetail/${day}/${month}/${year}`);
     }
     const handleCalendarClick = () => {
         router.push("/calendar");

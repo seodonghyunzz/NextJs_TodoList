@@ -38,3 +38,5 @@ export async function DELETE(request) {
     }
     return NextResponse.json(response);
   }
+
+  
