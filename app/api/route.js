@@ -21,7 +21,6 @@ export async function POST(request) {
 }
 export async function DELETE(request) {
     const { id } = await request.json();
-    console.log(id);
     await deleteTodo(id);
     const response = {
       message: "delete success"

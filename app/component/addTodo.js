@@ -10,7 +10,7 @@ export default function AddTodo({year,month,date}) {
 
       const newTodo = {
         text: inputValue,
-        date: `${year}년 ${month}월 ${date}일`,
+        date: `${year}. ${month}. ${date}.`,
         isChecked : false,
         isEditing : false,
         isPriority : false

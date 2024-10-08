@@ -94,3 +94,16 @@ export async function SearchTodo(text) {
     });
     return fetchedTodos
 }
+export async function deletePastTodos(){
+    const query = await getDocs(collection(db, "todos"));
+    if (query.empty) {
+        return [];
+    }
+    const fetchedTodos = [];
+    query.forEach((doc) => {
+        if(new Date(doc.data().date) < new Date()){
+            deleteDoc(doc.ref);
+        }
+    });
+    return fetchedTodos
+}

@@ -1,10 +1,12 @@
 'use client'
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-
+import Image from "next/image";
+import { deletePastTodos } from "../firebase/firebase";
 const Calendarpage = () => {
     const [currentDate, setCurrentDate] = useState(new Date());
     const router = useRouter();
+    const todayDate = new Date();
     const getDaysInMonth = (year, month) => {
         return new Date(year, month+1 , 0).getDate();
     };
@@ -51,7 +53,12 @@ const Calendarpage = () => {
         const year = currentDate.getFullYear();
         router.push(`/calendarDetail/${date}/${month}/${year}`);
     }
-    
+    const handleDeletePastPlan = () => {
+        if(confirm("오늘 이전의 계획을 모두 삭제하시겠습니까?")){
+            deletePastTodos();
+            alert("삭제되었습니다.");
+        }
+    }
     const calendar = generateCalendar();
     return (
         <div className="Calendar">
@@ -59,6 +66,9 @@ const Calendarpage = () => {
                 <button onClick={handlePrevMonth}>Prev</button>
                 <h1>{currentDate.toLocaleDateString('kr', { month: 'long', year: 'numeric' })}</h1>
                 <button onClick={handleNextMonth}>Next</button>
+                <button onClick={handleDeletePastPlan}>
+                    <Image src = "/delete.png" alt="delete" width={20} height={20}/>
+                </button>
             </div>
             <div className="CalendarBody">
                 <div className="DayOfWeek">
@@ -73,8 +83,9 @@ const Calendarpage = () => {
                 {calendar.map((week, index) => (
                     <div className="Week" key={index}>
                         {week.map((date, index) => (
-                            <div className="Day" key={index} onClick={() => date !== null && planInDate(date)}>
+                            <div className={date === todayDate.getDate() ? "Today" : "Day"} key={index} onClick={() => date !== null && planInDate(date)}>
                                 <p>{date}</p>
+                                {date === todayDate.getDate() && <p className="TodayText">Today</p>}
                             </div>
                         ))}
                     </div>

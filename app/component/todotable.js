@@ -60,7 +60,7 @@ const TodoTable = ({fetchedtodos}) => {
                 <tbody key={todo.id}>
                     <tr className={todo.isChecked ? "isChecked_tr" : ""}>
                         <td>{index+1}.</td>
-                        <td>{todo.date.replace("년", "/").replace("월", "/").replace("일", "")}</td>
+                        <td>{todo.date}</td>
                         <td>{todo.text}</td>
                         <td>
                             <button className="checkBtn" onClick={() => handleChecked({todo})}><Image src="/check.png" width={20} height={20} alt="check"/></button>
