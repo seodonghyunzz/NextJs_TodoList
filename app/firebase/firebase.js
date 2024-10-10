@@ -92,6 +92,9 @@ export async function SearchTodo(text) {
             fetchedTodos.push(todo);
         }
     });
+    fetchedTodos.sort((a, b) => {
+        return new Date(b.date) - new Date(a.date);
+    });
     return fetchedTodos
 }
 export async function deletePastTodos(){
