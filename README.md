@@ -18,24 +18,20 @@ CSS
 🖼️ 데모
 =======
 
-🔍 홈 화면
-홈 화면
+🔍 
 
-🎯 소환사 검색 결과
-검색 결과
+⭐
 
-⭐ 즐겨찾기, 순위표
-즐겨찾기
 
-🕹️ 최근 전적
-최근 전적
+
+
 
 🚀 설치 및 실행 방법
 # 1. 레포지토리 클론
-git clone https://github.com/seodonghyunzz/MyTFT_App.git
+git clone https://github.com/seodonghyunzz/
 
 # 2. 디렉토리 이동
-cd MyTFT_App
+cd 
 
 # 3. 패키지 설치
 npm install
