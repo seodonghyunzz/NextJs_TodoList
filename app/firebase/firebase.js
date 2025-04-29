@@ -1,7 +1,6 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore , collection, getDocs , setDoc , doc , deleteDoc, updateDoc} from "firebase/firestore";
+import { getFirestore , collection, getDocs , setDoc , doc , deleteDoc, updateDoc, serverTimestamp, orderBy} from "firebase/firestore";
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_APIKEY,
   authDomain: process.env.NEXT_PUBLIC_AUTHDOMAIN,
@@ -11,25 +10,26 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_APPID
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app)
 
 export async function getTodos() {
-    const query = await getDocs(collection(db, "todos"));
+    
+    const query = await getDocs(collection(db, "todos"),orderBy("createdAt","desc"));
     if (query.empty) {
         return [];
     }
     const fetchedTodos = [];
     query.forEach((doc) => {
-        
+        const data = doc.data();
         const todo = {
             id: doc.id,
             text: doc.data().text,
             isChecked: doc.data().isChecked,
             isEditing: doc.data().isEditing,
             isPriority: doc.data().isPriority,
-            date: doc.data().date
+            date: doc.data().date,
+            createdAt: data.createdAt?.toDate().toISOString() ?? "",
         }
         fetchedTodos.push(todo);
     });
@@ -45,7 +45,8 @@ export async function addTodo({ todo }) {
      isChecked: todo.isChecked,
      isEditing: todo.isEditing,
      isPriority: todo.isPriority,
-     date: todo.date
+     date: todo.date,
+     createdAt: serverTimestamp(),
     };
 
     await setDoc(newTodoRef, newTodo);
@@ -68,7 +69,8 @@ export async function updateTodo({ id, todo }) {
       isChecked: todo.isChecked,
       isEditing: todo.isEditing,
       isPriority: todo.isPriority,
-      date: todo.date
+      date: todo.date,
+
     });
     return updateTodo;
   }
@@ -87,7 +89,7 @@ export async function SearchTodo(text) {
                 isChecked: doc.data().isChecked,
                 isEditing: doc.data().isEditing,
                 isPriority: doc.data().isPriority,
-                date: doc.data().date
+                date: doc.data().date,
             }
             fetchedTodos.push(todo);
         }

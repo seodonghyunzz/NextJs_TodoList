@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 
 const TodoTable = ({fetchedtodos}) => {
     const router = useRouter()
+    console.log(fetchedtodos)
     const handleDelete = async (id) => {
         await fetch('http://localhost:3000/api/', {
           method: 'DELETE',
@@ -90,7 +91,7 @@ const TodoTable = ({fetchedtodos}) => {
         });
         setTimeout(() => { router.refresh() }, 0.1);
       }
-      
+
     return (
         <div className="TodoTable">
             <table>
@@ -102,14 +103,17 @@ const TodoTable = ({fetchedtodos}) => {
                         <th>Action</th>
                     </tr>
                 </thead>
-                {fetchedtodos && fetchedtodos.length > 0 ? ( fetchedtodos.map((todo, index) => (
+                {fetchedtodos  && fetchedtodos .length > 0 ? (
+                  fetchedtodos
+                  .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+                  .map((todo, index) => (
                 <tbody key={todo.id}>
-                    <tr className={todo.isChecked ? "isChecked_tr" : ""}>
+                    <tr className={!todo.isEditing && todo.isChecked ? "isChecked_tr" : ""}>
                         <td>{index+1}.</td>
                         <td>{todo.date}</td>
                         {todo.isEditing ?
                         (
-                          <td>
+                          <td className='inputbox'> 
                             <input type="text" defaultValue={todo.text} onChange={(e) => todo.text = e.target.value} onKeyDown={(e) => e.key === "Enter" && handleEdit({todo})}/>
                             <button onClick={() => handleEdit({todo})}>Save</button>
                             <button onClick={() => handleEditCancel({todo})}>x</button>

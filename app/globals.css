@@ -183,6 +183,18 @@ body{
 .checkBtn,.editBtn{
   margin-right: 10px
 }
+.inputbox{
+  display: flex;
+  justify-content: center;
+}
+.inputbox input {
+  border: 1px solid black;
+  border-radius: 7px;
+}
+.inputbox button{
+  border: 1px solid black;
+  border-radius: 7px;
+}
 .Input_Area{
   margin-bottom: 30px;
   display: flex;
@@ -452,6 +464,14 @@ body{
 .isChecked_tr{
   text-decoration: line-through;
   color: rgb(33, 180, 33);
-
 }
 
+.inputbox input{
+  margin-right: 2px;
+}
+
+.inputbox button{
+  margin-right: 2px;
+  color: white;
+  background-color: black;
+}
