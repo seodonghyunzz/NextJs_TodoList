@@ -15,20 +15,7 @@ Next.js (App Router), React, Firebase, CSS
 
 ---
 
-🖼️ **ScreenShots**  
 
-- 🗓️ **일별 할일 등록**
-!(https://raw.githubusercontent.com/seodonghyunzz/NextJS_TodoList/master/public/screenshots/todo_calendarpage.PNG)
-- 🕒 **오늘 할일**
-!(https://raw.githubusercontent.com/seodonghyunzz/NextJS_TodoList/master/public/screenshots/todo_calendarDetail.PNG)
-- 📋 **할일 수정, 삭제, 완료 기능**
-!(https://raw.githubusercontent.com/seodonghyunzz/NextJS_TodoList/master/public/screenshots/todo_check.PNG)
-(https://raw.githubusercontent.com/seodonghyunzz/NextJS_TodoList/master/public/screenshots/todo_edit.PNG)
-- ⭐ **중요한 할일 모아보기**
-!(https://raw.githubusercontent.com/seodonghyunzz/NextJS_TodoList/master/public/screenshots/todo_priority.PNG)
-- 🔍 **할일 검색 기능**
-!(https://raw.githubusercontent.com/seodonghyunzz/NextJS_TodoList/master/public/screenshots/todo_search.PNG)
----
 
 
 🚀 **설치 및 실행 방법**
@@ -46,7 +33,20 @@ npm install
 # 4. 개발 서버 실행
 npm run dev
 
+🖼️ **ScreenShots**  
 
+- 🗓️ **일별 할일 등록**
+(https://raw.githubusercontent.com/seodonghyunzz/NextJS_TodoList/master/public/screenshots/todo_calendarpage.PNG)
+- 🕒 **오늘 할일**
+(https://raw.githubusercontent.com/seodonghyunzz/NextJS_TodoList/master/public/screenshots/todo_calendarDetail.PNG)
+- 📋 **할일 수정, 삭제, 완료 기능**
+(https://raw.githubusercontent.com/seodonghyunzz/NextJS_TodoList/master/public/screenshots/todo_check.PNG)
+(https://raw.githubusercontent.com/seodonghyunzz/NextJS_TodoList/master/public/screenshots/todo_edit.PNG)
+- ⭐ **중요한 할일 모아보기**
+(https://raw.githubusercontent.com/seodonghyunzz/NextJS_TodoList/master/public/screenshots/todo_priority.PNG)
+- 🔍 **할일 검색 기능**
+(https://raw.githubusercontent.com/seodonghyunzz/NextJS_TodoList/master/public/screenshots/todo_search.PNG)
+---
 
 =======
 
