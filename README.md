@@ -1,18 +1,39 @@
-My TodoList
+# My TodoList
 
-🔧 기술 스택
-Next.js (App Router)
-React
-Firebase
-CSS
+🔧 **기술 스택**  
+Next.js (App Router), React, Firebase, CSS
 
-✨ 주요 기능
-기능	설명
-🗓️ 요일별 할일 등록 (캘린더 UI)
-🕒 오늘 할일
-📋 할일 수정, 삭제, 완료기능
-⭐ 중요한 할일 모아보기
-🔍 할일 검색 기능
+---
+
+✨ **주요 기능 설명**
+
+- 🗓️ **요일별 할일 등록** (캘린더 UI)
+- 🕒 **오늘 할일**
+- 📋 **할일 수정, 삭제, 완료 기능**
+- ⭐ **중요한 할일 모아보기**
+- 🔍 **할일 검색 기능**
+
+---
+
+🖼️ **데모**  
+
+
+---
+
+🚀 **설치 및 실행 방법**
+
+```bash
+# 1. 레포지토리 클론
+git clone https://github.com/seodonghyunzz/
+
+# 2. 디렉토리 이동
+cd [프로젝트 폴더명]
+
+# 3. 패키지 설치
+npm install
+
+# 4. 개발 서버 실행
+npm run dev
 
 
 🖼️ 데모
@@ -56,5 +77,8 @@ NEXT_PUBLIC_APPID= YOUR_FIREBASE_APPID
 
 📮 Contact
 
-@ durcjsay@gmail.com (gmail)
-@ seodonghyunzz (github)
+📧 durcjsay@gmail.com
+
+💻 @seodonghyunzz (GitHub)
+
+
